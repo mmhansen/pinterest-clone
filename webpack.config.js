@@ -10,7 +10,7 @@ const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
   style: [
-    path.join(__dirname, 'node_modules', 'purecss'),
+    //path.join(__dirname, 'node_modules', 'purecss'),
     path.join(__dirname, 'app', 'main.css')
   ]
 };
