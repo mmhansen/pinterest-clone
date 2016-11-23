@@ -24,6 +24,7 @@ export default function (app) {
   }
   const facebookAuth = passport.authenticate('facebook', options)
   const localAuth = passport.authenticate('local', options)
+  const jwtAuth = passport.authenticate('jwt', {session: false})
   // facebook
   apiRoutes.get('/facebook', facebookAuth)
   apiRoutes.get('/facebook/callback', facebookAuth, login);
@@ -32,16 +33,16 @@ export default function (app) {
   apiRoutes.post('/register', register)
   // Pin routing
   const pinRouter = Router();
-  pinRouter.post('/create', createPin)
-  pinRouter.delete('/:pin_id', deletePin)
-  pinRouter.put('/:pin_id', updatePin)
+  pinRouter.post('/create', jwtAuth, createPin)
+  pinRouter.delete('/:pin_id', jwtAuth, deletePin)
+  pinRouter.put('/:pin_id', jwtAuth, updatePin)
   pinRouter.get('/:user_id', fetchUserPins)
-  pinRouter.put('/like/:pin_id', likePin)
-  pinRouter.put('/share/:pin_id/:user_id', sharePin)
+  pinRouter.put('/like/:pin_id', jwtAuth, likePin)
+  pinRouter.put('/share/:pin_id/:user_id', jwtAuth, sharePin)
   apiRoutes.use('/pins', pinRouter)
 
-  // errors
-  errors(app)
   //connect api sub router to server
   app.use('/api', apiRoutes)
+  // errors
+  errors(app)
 }

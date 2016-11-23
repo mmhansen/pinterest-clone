@@ -2,7 +2,7 @@ import passport from 'passport'
 // strategies
 import local from 'passport-local'
 import facebook from 'passport-facebook'
-import { extractJwt, Strategy } from 'passport-jwt'
+import { ExtractJwt, Strategy } from 'passport-jwt'
 // locals
 import config from './config'
 import User from '../models/User'
@@ -41,12 +41,17 @@ passport.use(new facebook({
 ));
 
 
-// /*
-//  * Jwt Strategy
-//  */
-// passport.use(new Strategy({
-//   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-//   secretOrKey: config.secret
-// }, (payload, done) => {
-//
-// }))
+/*
+ * Jwt Strategy
+ */
+passport.use(new Strategy({
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  secretOrKey: config().secret
+}, (payload, done) => {
+  User.findById(payload.sub, (err, user) => {
+    if(err) { return done(err, false); } // catch db err
+    if(!user) { return done(null, false); } // user doesn't exist with given ID
+    // all good -> return user
+    return done(null, user)
+  })}
+))

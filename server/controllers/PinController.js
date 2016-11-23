@@ -2,9 +2,9 @@ import Pin from '../models/Pin'
 
 // this creates a new pin by image url and title
 export function createPin (req, res, next) {
-  let { user_id, title, image_url } = req.body
+  let { owner, title, image_url } = req.body
 
-  const newPin = new Pin({ owner: user_id, title, image_url })
+  const newPin = new Pin({ owner, title, image_url })
   newPin.save((err, pin) => {
     if (err) { return next(err) }
     res.created({pin})
