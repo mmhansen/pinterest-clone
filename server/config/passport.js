@@ -31,7 +31,7 @@ passport.use(new local({
 passport.use(new facebook({
     clientID: config().facebook.id,
     clientSecret: config().facebook.secret,
-    callbackURL: 'http://localhost:3000/api/facebook/callback'
+    callbackURL: `${config().host}/api/facebook/callback`
   },
   (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({ email: profile.email }, (err, user) => {
@@ -45,9 +45,9 @@ passport.use(new facebook({
  * Twitter Strategy
  */
 passport.use(new TwitterStrategy({
-    consumerKey: 'cQN8kFLWOULprKY8Zu3uG24lgYm9tLhMxw3eFnY7BNW6haPor2',
-    consumerSecret: 'RVkXgAWyYsF89IhbmcCWYmIkT',
-    callbackURL: "http://localhost:3000/api/twitter/callback"
+    consumerKey: config().twitter.key,
+    consumerSecret: config().twitter.secret,
+    callbackURL: `${config().host}/api/twitter/callback`
   },
   (token, tokenSecret, profile, cb) => {
     User.findOrCreate({email: profile.email}, (err, user) => {
