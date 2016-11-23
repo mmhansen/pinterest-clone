@@ -1,11 +1,10 @@
 // dependencies
-import express from 'express';
-import mongoose from 'mongoose';
 import express from 'express'
+import mongoose from 'mongoose'
 import logger from 'morgan'
 import bodyParser from 'body-parser'
 import passport from 'passport'
-import responses from './responses'
+import responses from './utils/responses'
 import cors from 'cors'
 // locals
 import route from './routes'
@@ -14,12 +13,10 @@ import getConfig from './config/config'
 const app = express();
 const config = getConfig();
 // connect to DB
-
-mongoose.connect(`mongodb://${config.database.host}/${config.database.name}`)
+mongoose.connect(config.database)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', () => (console.log(`db connection open on ${config.database.name}`)))
-
+db.once('open', () => (console.log(`db connection open on ${config.database_name}`)))
 // middleware
 const options = {
    origin: 'http://localhost:8080/',

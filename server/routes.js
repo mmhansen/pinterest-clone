@@ -3,7 +3,7 @@ import passport from 'passport'
 //locals
 import passportStrategies from './config/passport'
 import { login, register } from './controllers/authentication'
-import errors from './controller/error'
+import errors from './controllers/error'
 
 
 export default function (app) {
@@ -20,7 +20,7 @@ export default function (app) {
   apiRoutes.get('/facebook/callback', facebookAuth, login);
   //Locals
   apiRoutes.post('/login', localAuth, login)
-  apiRoutes .post('/register', register)
+  apiRoutes.post('/register', register)
   // errors
   errors(app)
   //connect api sub router to server

@@ -5,13 +5,14 @@ const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const parts = require('./libs/parts');
 const pkg = require('./package.json');
+const clientDependencies =  null;//Object.keys(pkg.dependencies)
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
   style: [
-    //path.join(__dirname, 'node_modules', 'purecss'),
-    path.join(__dirname, 'app', 'main.css')
+    path.join(__dirname, 'node_modules', 'bootstrap'),
+    path.join(__dirname, 'app/style', 'index.scss')
   ]
 };
 
@@ -31,7 +32,13 @@ const common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo'
+      title: 'Pinterest Clone',
+      template: './app/index.ejs',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      inject: true
     })
   ]
 };
@@ -61,7 +68,7 @@ switch(process.env.npm_lifecycle_event) {
       // },
       parts.extractBundle({
         name: 'vendor',
-        entries: ['react']//Object.keys(pkg.dependencies)
+        entries: ['react']
       }),
       parts.extractCSS(PATHS.style),
       parts.purifyCSS([PATHS.app]),
