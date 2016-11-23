@@ -23,11 +23,14 @@ export default function (app) {
     scope: ['email']
   }
   const facebookAuth = passport.authenticate('facebook', options)
+  const twitterAuth = passport.authenticate('twitter', options)
   const localAuth = passport.authenticate('local', options)
   const jwtAuth = passport.authenticate('jwt', {session: false})
   // facebook
   apiRoutes.get('/facebook', facebookAuth)
   apiRoutes.get('/facebook/callback', facebookAuth, login);
+  apiRoutes.get('/twitter', twitterAuth)
+  apiRoutes.get('/twitter/callback', twitterAuth, login)
   //Locals
   apiRoutes.post('/login', localAuth, login)
   apiRoutes.post('/register', register)

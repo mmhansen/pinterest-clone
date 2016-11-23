@@ -2,6 +2,7 @@ import passport from 'passport'
 // strategies
 import local from 'passport-local'
 import facebook from 'passport-facebook'
+import TwitterStrategy from 'passport-twitter'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 // locals
 import config from './config'
@@ -39,6 +40,21 @@ passport.use(new facebook({
     })
   }
 ));
+
+/*
+ * Twitter Strategy
+ */
+passport.use(new TwitterStrategy({
+    consumerKey: 'cQN8kFLWOULprKY8Zu3uG24lgYm9tLhMxw3eFnY7BNW6haPor2',
+    consumerSecret: 'RVkXgAWyYsF89IhbmcCWYmIkT',
+    callbackURL: "http://localhost:3000/api/twitter/callback"
+  },
+  (token, tokenSecret, profile, cb) => {
+    User.findOrCreate({email: profile.email}, (err, user) => {
+      return cb(err, user)
+    })
+  }
+))
 
 
 /*
