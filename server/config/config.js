@@ -6,7 +6,7 @@ export default function () {
     "database_name": "pinterest-clone",
     "facebook": {
       "id": "1597692497203124",
-      "secret": "f8c0bfd40eeeae87326e1e66d4362d33"
+      "secret": "cd949c65ae64c227cce92d02dfeac627"
     },
     "twitter": {
       "key": "cQN8kFLWOULprKY8Zu3uG24lgYm9tLhMxw3eFnY7BNW6haPor2",

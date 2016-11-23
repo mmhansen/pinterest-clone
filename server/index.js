@@ -19,10 +19,10 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => (console.log(`db connection open on ${config.database_name}`)))
 // middleware
-const options = {
-   origin: 'http://localhost:8080/',
-}
-app.use(cors(options))
+// const options = {
+//    origin: 'http://localhost:8080/',
+// }
+app.use(cors())
 // logger
 app.use(logger('dev'))
 // body parser

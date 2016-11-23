@@ -1,5 +1,6 @@
 import express, { Router } from 'express'
 import passport from 'passport'
+import path from 'path'
 //locals
 import passportStrategies from './config/passport'
 import { login, register } from './controllers/authentication'
@@ -46,6 +47,9 @@ export default function (app) {
 
   //connect api sub router to server
   app.use('/api', apiRoutes)
+  app.get('*', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname, '../public'))
+  })
   // errors
   errors(app)
 }
