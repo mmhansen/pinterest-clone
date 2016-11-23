@@ -6,6 +6,7 @@ import bodyParser from 'body-parser'
 import passport from 'passport'
 import responses from './utils/responses'
 import cors from 'cors'
+import path from 'path'
 // locals
 import route from './routes'
 import getConfig from './config/config'
@@ -29,6 +30,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 // passport
 app.use(passport.initialize());
+/*
+ *
+ */
+app.use(express.static(path.join(__dirname, '../public')))
 // responses
 app.use(responses)
 /*

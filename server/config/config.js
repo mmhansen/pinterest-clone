@@ -11,7 +11,7 @@ export default function () {
     "twitter": {
       "key": "cQN8kFLWOULprKY8Zu3uG24lgYm9tLhMxw3eFnY7BNW6haPor2",
       "secret": "RVkXgAWyYsF89IhbmcCWYmIkT"
-    }
+    },
     "secret": "zANzh4EEykHC7Z",
     "port": 3000
   }
@@ -20,11 +20,13 @@ export default function () {
     let devConfig = {
       host: "http://localhost:3000"
     }
-    object.assign({}, config, devConfig)
+  config = Object.assign({}, config, devConfig)
   } else if (env === "start") {
     let prodConfig = {
       host: "https://hn-pinterest-clone.herokuapp.com"
     }
+  config = Object.assign({}, config, prodConfig)
   }
+  return config
 
 }
