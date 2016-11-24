@@ -5,7 +5,7 @@ export default function () {
     "database": "mongodb://freecodecamp:tuesday@ds011790.mlab.com:11790/pinterest-clone",
     "database_name": "pinterest-clone",
     "facebook": {
-      "id": "1597692497203124",
+      "id": "1794472830833191",
       "secret": "cd949c65ae64c227cce92d02dfeac627"
     },
     "twitter": {
@@ -16,7 +16,7 @@ export default function () {
     "port": 3000
   }
   const env = process.env.npm_lifecycle_event
-  if (env === "dev:server") {
+  if (env === "dev") {
     let devConfig = {
       host: "http://localhost:3000"
     }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import {
   AUTH_USER,
   UNAUTH_USER,
@@ -6,16 +7,16 @@ import {
 } from './types'
 
 export function facebookLogin () {
-  return dispatch => {
-      return axios.get('/api/facebook')
-        .then((res) => {
-          console.log(res)
-        })
-  }
+
 }
 
 export function twitterLogin () {
-
+  return dispatch => {
+    return axios.get('/api/twitter')
+      .then(res => {
+        console.log(res)
+      })
+  }
 }
 
 export function loginUser () {

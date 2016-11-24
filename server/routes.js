@@ -20,8 +20,8 @@ export default function (app) {
   const apiRoutes = Router();
   const options = {
     failureRedirect: '/login',
-    session:  false,
-    scope: ['email']
+    scope: 'email',
+    session: false
   }
   const facebookAuth = passport.authenticate('facebook', options)
   const twitterAuth = passport.authenticate('twitter', options)
@@ -47,9 +47,11 @@ export default function (app) {
 
   //connect api sub router to server
   app.use('/api', apiRoutes)
+
   app.get('*', function(req, res, next) {
-    res.sendFile(path.resolve(__dirname, '../public'))
+   res.sendFile(path.resolve(__dirname, '../public', 'index.html'))
   })
+
   // errors
   errors(app)
 }

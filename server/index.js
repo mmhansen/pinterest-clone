@@ -3,6 +3,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import logger from 'morgan'
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import responses from './utils/responses'
 import cors from 'cors'
@@ -25,6 +26,7 @@ db.once('open', () => (console.log(`db connection open on ${config.database_name
 app.use(cors())
 // logger
 app.use(logger('dev'))
+app.use(cookieParser())
 // body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

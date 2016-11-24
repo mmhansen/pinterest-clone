@@ -7,7 +7,8 @@ const LoginPage = function ({ facebookLogin, twitterLogin }) {
     return (
       <div>
         <button onClick={() => { twitterLogin() }}>Login with Twitter</button>
-        <button onClick={() => { facebookLogin() }}>Login with Facebook</button>
+        {/* <button onClick={() => { facebookLogin() }}>Login with Facebook</button> */}
+        <a href="http://localhost:3000/api/facebook">Login with Facebook</a>
         <div>
           <h3>Login</h3>
         </div>

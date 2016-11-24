@@ -12,8 +12,10 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  })
 });
 
 /*
@@ -37,12 +39,14 @@ passport.use(new local({
 /*
  * Facebook Strategy
  */
+
 passport.use(new facebook({
     clientID: config().facebook.id,
     clientSecret: config().facebook.secret,
     callbackURL: `${config().host}/api/facebook/callback`
   },
   (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
     User.findOrCreate({ email: profile.email }, (err, user) => {
       if (err) { return done(err); }
       done(null, user)

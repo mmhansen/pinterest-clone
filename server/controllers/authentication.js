@@ -9,9 +9,14 @@ const makeToken = (id) => {
 // login control
 export function login (req, res, next) {
   let { _id } = req.user
-  res.okay({
-    token: makeToken(_id)
-  })
+  // res.okay({
+  //   token: makeToken(_id)
+  // })
+  const expiresIn = 60 * 60 * 24 * 180; // 180 days
+  // const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
+  const token = makeToken(_id)
+  res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
+  res.redirect('/')
 }
 // register control
 export function register (req, res, next) {
