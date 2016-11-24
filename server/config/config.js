@@ -5,25 +5,25 @@ export default function () {
     "database": "mongodb://freecodecamp:tuesday@ds011790.mlab.com:11790/pinterest-clone",
     "database_name": "pinterest-clone",
     "facebook": {
-      "id": "1794472830833191",
-      "secret": "cd949c65ae64c227cce92d02dfeac627"
+      "id": "1268152893205818",
+      "secret": "c74d5d8544d07221b736b8c9454160f4"
     },
     "twitter": {
-      "key": "cQN8kFLWOULprKY8Zu3uG24lgYm9tLhMxw3eFnY7BNW6haPor2",
-      "secret": "RVkXgAWyYsF89IhbmcCWYmIkT"
+      "key": "hXpRjbJCa0LlNL3HShPn1qZg1",
+      "secret": "bxuk1QsqjEzkJD2BbQlAwxP30rWEUOeQwZKMMhmjepRVhjetNb"
     },
     "secret": "zANzh4EEykHC7Z",
     "port": 3000
   }
-  const env = process.env.npm_lifecycle_event
+  const env = process.env.NODE_ENV
   if (env === "dev") {
     let devConfig = {
       host: "http://localhost:3000"
     }
   config = Object.assign({}, config, devConfig)
-  } else if (env === "start") {
+} else if (env === "prod") {
     let prodConfig = {
-      host: "https://hn-pinterest-clone.herokuapp.com"
+      host: "https://ob-pinterest-clone.herokuapp.com"
     }
   config = Object.assign({}, config, prodConfig)
   }

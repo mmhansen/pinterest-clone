@@ -26542,7 +26542,7 @@
 	    ),
 	    _react2.default.createElement(
 	      'a',
-	      { href: 'http://localhost:3000/api/facebook' },
+	      { href: '/api/facebook' },
 	      'Login with Facebook'
 	    ),
 	    _react2.default.createElement(

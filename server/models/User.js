@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt-nodejs'
-import findOrCreate from 'mongoose-findOrCreate'
+import findOrCreate from 'mongoose-findorcreate'
 
 const User = new Schema ({
   email: {
